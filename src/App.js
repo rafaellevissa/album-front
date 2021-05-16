@@ -1,16 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
+import Routes from './Routes';
 
 function App() {
   return (
-    <div>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Olá mundo!
-        </p>
-      </header>
-    </div>
+     <Routes/>
   );
 }
 
