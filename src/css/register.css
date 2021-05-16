@@ -1,0 +1,43 @@
+.App-header {
+    background-color: #d8ab2f;
+    border-radius: 1%;
+    box-shadow: 0 0 1em black;
+    position: relative;
+    top: 40px;
+    left: 450px;
+    width: 600px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: calc(10px + 2vmin);
+  }
+  
+  .App-email{
+    top: 10px;
+  }
+  
+  .App-password{
+    top: 30px;
+  }
+  
+  .App-h3{
+    color: antiquewhite;
+  }
+  
+  .App-h1{
+    color:antiquewhite;
+  }
+  
+  .App-entrar{
+    top:70px;
+    left: 350px;
+    position: relative;
+  }
+  
+  .App-link {
+    color: antiquewhite;
+    top: 70px;
+    left: 30px;
+    position: relative;
+  }
