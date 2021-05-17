@@ -1,0 +1,35 @@
+.album-div{
+    width: 24%;
+}
+
+.album-div2{
+    position: relative;
+    width: 24%;
+    left: 400px;
+    top: -250px;
+}
+
+.modal-button{
+    color: white;
+    background-color: rgb(31, 33, 131);
+    position: relative;
+    left: 90%;
+    top: -30px;
+    width: 120px;
+    height: 40px;
+    border-radius: 5%;
+}
+
+.album-description{
+    top: 10px;
+}
+
+.album-entrar{
+    top: 20px;
+}
+
+.album-sair{
+    position: relative;
+    top: -60px;
+    left: 90%;
+}
