@@ -1,0 +1,10 @@
+.modal-button{
+    color: white;
+    background-color: rgb(31, 33, 131);
+    position: relative;
+    left: 90%;
+    top: -30px;
+    width: 120px;
+    height: 40px;
+    border-radius: 5%;
+}
