@@ -90,7 +90,7 @@ function MyGallery(){
             <TextField required fullWidth className="album-name" name="title" type="text" id="outlined-basic" label="Título" variant="outlined" />
             <TextField required fullWidth className="album-description" name="description" type="text" id="outlined-basic" label="Descrição" variant="outlined" />
             <TextField required fullWidth className="photo-data" name="date" type="datetime-local" id="outlined-basic" variant="outlined" />
-            <TextField required fullWidth className="photo-color" name="color" type="text" id="outlined-basic" label="Cor predominante" variant="outlined" />
+            <TextField required fullWidth className="photo-color" name="color" type="color" id="outlined-basic" label="Cor predominante" variant="outlined" />
             <Button type="submit" href="#" className="album-entrar" variant="contained" color="primary">
       Enviar
      </Button>
