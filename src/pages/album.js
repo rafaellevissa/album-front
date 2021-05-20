@@ -1,4 +1,5 @@
 import React from 'react';
+import{ useState, useEffect } from 'react';
 import {TextField,Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -12,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import capa from '../images/Texture_Brown.jpg';
 import Link from '@material-ui/core/Link';
 import '../css/album.css';
+import api from '../services/api';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,6 +33,30 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function Album() {
+  const [ user_id, setUser_id] = useState('');
+  const [ title, setTitle ] = useState('');
+  const [ description, setDescription ] = useState('');
+
+
+  async function cadastrar() {
+
+    try{
+      await api.post('/album',{
+      title:title,
+      description:description,
+      user_id:user_id,
+    })
+
+    alert("Voce foi cadastrado");
+
+    return window.location.href = "/albuns"
+
+  }
+  catch(error){ //DEBUG do ERRO
+    console.log('Houve erro!')
+  }
+}
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -49,7 +75,7 @@ export default function Album() {
       Sair
      </Button>
     <div className="album-div">
-    <Link href="/" color="inherit" style={{textDecoration:'none'}}>
+    <Link href="/photo/:id" color="inherit" style={{textDecoration:'none'}}>
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
@@ -61,33 +87,10 @@ export default function Album() {
         />
         <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-            Aniversário da minha filha
+            {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Álbum de fotos do aniversário da minha filha querida
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-    </Link>
-    </div>
-    <div className="album-div2">
-    <Link href="/" color="inherit" style={{textDecoration:'none'}}>
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Capa de couro do álbum"
-          height="140"
-          image={capa}
-          title="Capa de couro do álbum"
-        />
-        <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-            Aniversário da minha filha
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Álbum de fotos do aniversário da minha filha querida
+            {description}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -114,9 +117,10 @@ export default function Album() {
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Criar novo álbum</h2>
             <form>
-            <TextField required fullWidth className="album-name" name="title" type="text" id="outlined-basic" label="Título" variant="outlined" />
-            <TextField required fullWidth className="album-description" name="description" type="text" id="outlined-basic" label="Descrição" variant="outlined" />
-            <Button type="submit" href="#" className="album-entrar" variant="contained" color="primary">
+            <TextField required fullWidth className="album-name" name="title" type="text" id="outlined-basic" label="Título" variant="outlined" onChange={ e => setTitle(e.target.value) } />
+            <TextField required fullWidth className="album-description" name="description" type="text" id="outlined-basic" label="Descrição" variant="outlined" onChange={ e => setDescription(e.target.value) } />
+            <TextField required fullWidth className="user_id" name="user_id" type="number" id="outlined-basic" label="numero" variant="outlined" onChange={ e => setUser_id(e.target.value) } />
+            <Button type="submit" onClick={cadastrar} className="album-entrar" variant="contained" color="primary">
       Concluir
      </Button>
      </form>

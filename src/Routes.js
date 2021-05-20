@@ -12,7 +12,7 @@ function Routes(){
         <Route path='/' exact component={login} />    
         <Route path='/cadastro' component={register} />
         <Route path='/albuns' component={album} />
-        <Route path='/album/photo' component={photo} />
+        <Route path='/photo/:id' component={photo} />
         </Switch>
         </BrowserRouter>
     )
