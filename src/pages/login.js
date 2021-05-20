@@ -20,7 +20,7 @@ function Login() {
       })
 
 
-      localStorage.setItem('User',JSON.stringify(data))
+      localStorage.setItem('User',JSON.stringify(data?.data?.data?.id))
 
       console.log(data);  
 

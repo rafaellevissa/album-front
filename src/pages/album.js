@@ -33,10 +33,24 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function Album() {
-  const [ user_id, setUser_id] = useState('');
+  const [ user_id, setUser_id] = useState(0);
   const [ title, setTitle ] = useState('');
   const [ description, setDescription ] = useState('');
+  const [ albuns, setAlbuns ] = useState([]);
 
+  
+  useEffect(async()=>{
+
+    const id_user = localStorage.getItem('User')
+    const responseAlbuns = await api.get(`/album/user/${id_user}`)
+    if(responseAlbuns.data.length === 0){
+      return setAlbuns([
+        title= '',
+        description= ''
+      ])
+    }
+    return setAlbuns(responseAlbuns.data.data)
+  },[])
 
   async function cadastrar() {
 
@@ -75,27 +89,31 @@ export default function Album() {
       Sair
      </Button>
     <div className="album-div">
-    <Link href="/photo/:id" color="inherit" style={{textDecoration:'none'}}>
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Capa de couro do álbum"
-          height="140"
-          image={capa}
-          title="Capa de couro do álbum"
-        />
-        <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
-            {title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {description}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-    </Link>
+      {albuns.map((albumParam) => (
+      
+      <Link key={albumParam.id} href="/photo/:id" color="inherit" style={{textDecoration:'none'}}>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt="Capa de couro do álbum"
+            height="140"
+            image={capa}
+            title="Capa de couro do álbum"
+          />
+          <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+              {albumParam?.title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {albumParam?.description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+      </Link>
+      ))}
+
     </div>
     <div>
       <button className="modal-button" type="button" onClick={handleOpen}>
